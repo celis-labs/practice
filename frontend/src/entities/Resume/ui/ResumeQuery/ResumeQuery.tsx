@@ -5,12 +5,12 @@ import { Input } from "@nextui-org/react";
 
 import { useDebounce } from "use-debounce";
 
-import { getVacanciesStore } from "../../model/reducers/getVacanciesStore";
-import { vacanciesStoreActions } from "../../model/slices/vacanciesStore.ts";
+import { getResumesStore } from "../../model/reducers/getResumesStore";
+import { resumesStoreActions } from "../../model/slices/resumesStore.ts";
 
-export const VacancyQuery = () => {
+export const ResumeQuery = () => {
     const dispatch = useDispatch();
-    const { loading } = useSelector(getVacanciesStore);
+    const { loading } = useSelector(getResumesStore);
 
     const [typed, setTyped] = useState("");
     const [value] = useDebounce(typed, 1000);
@@ -22,7 +22,7 @@ export const VacancyQuery = () => {
     }
 
     useEffect(() => {
-        dispatch(vacanciesStoreActions.setQuery(value));
+        dispatch(resumesStoreActions.setQuery(value));
     }, [value]);
 
     return (

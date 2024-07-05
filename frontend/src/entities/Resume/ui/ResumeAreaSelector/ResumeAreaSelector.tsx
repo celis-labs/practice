@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Autocomplete, AutocompleteItem, Spinner } from "@nextui-org/react";
 
 import { getAreas } from "../../api";
-import { IArea } from "../../api/interfaces/area.interface.ts";
+import { IArea } from "../../../../shared/interfaces/area.interface.ts";
 
-import { getVacanciesStore } from "../../model/reducers/getVacanciesStore";
-import { vacanciesStoreActions } from "../../model/slices/vacanciesStore.ts";
+import { getResumesStore } from "../../model/reducers/getResumesStore";
+import { resumesStoreActions } from "../../model/slices/resumesStore.ts";
 
-export const VacancyAreaSelector = () => {
+export const ResumeAreaSelector = () => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState<IArea[]>([]);
 
     const dispatch = useDispatch();
-    const { loading, area } = useSelector(getVacanciesStore);
+    const { loading, area } = useSelector(getResumesStore);
 
     useEffect(() => {
         setLoading(true);
@@ -26,7 +26,7 @@ export const VacancyAreaSelector = () => {
             })
     }, []);
 
-    const setSelected = (value: string) => dispatch(vacanciesStoreActions.setArea(value));
+    const setSelected = (value: string) => dispatch(resumesStoreActions.setArea(value));
 
     if (isLoading) {
         return <Spinner color="white"/>;

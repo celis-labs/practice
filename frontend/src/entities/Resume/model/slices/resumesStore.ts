@@ -1,30 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { VacanciesStoreSchema } from "../types/vacanciesStoreSchema.ts";
+import { ResumesStoreSchema } from "../types/resumesStoreSchema.ts";
 
-const initialState: VacanciesStoreSchema = {
+const initialState: ResumesStoreSchema = {
     loading: false,
-    vacancies: [],
+    resumes: [],
     query: '',
     only_with_salary: false,
-    salary: 0
+    salary_from: 0,
+    salary_to: 0
 };
 
-export const vacanciesStore = createSlice({
-    name: 'vacancies',
+export const resumesStore = createSlice({
+    name: 'resumes',
     initialState,
     reducers: {
         setLoading: (action, state) => {
             action.loading = state.payload;
         },
-        setVacancies: (action, state) => {
-            action.vacancies = state.payload;
+        setResumes: (action, state) => {
+            action.resumes = state.payload;
         },
         setQuery: (action, state) => {
             action.query = state.payload;
-        },
-        setExperience: (action, state) => {
-            action.experience = state.payload;
         },
         setArea: (action, state) => {
             action.area = state.payload;
@@ -32,13 +30,16 @@ export const vacanciesStore = createSlice({
         setOnlyWithSalary: (action, state) => {
             action.only_with_salary = state.payload;
         },
-        setSalary: (action, state) => {
-            action.salary = state.payload;
+        setSalaryFrom: (action, state) => {
+            action.salary_from = state.payload;
+        },
+        setSalaryTo: (action, state) => {
+            action.salary_to = state.payload;
         }
     }
 });
 
 export const {
-    actions: vacanciesStoreActions,
-    reducer: vacanciesStoreReducer
-} = vacanciesStore;
+    actions: resumesStoreActions,
+    reducer: resumesStoreReducer
+} = resumesStore;
