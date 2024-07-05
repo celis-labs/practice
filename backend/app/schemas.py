@@ -31,6 +31,7 @@ class ResumeBase(BaseModel):
     area: int
     age: int
     experience: str
+    address: str
 
 
 class ResumeCreate(ResumeBase):
