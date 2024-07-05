@@ -56,23 +56,17 @@ async def get_resumes(
     try:
         parsed_resumes = await parser.parse_resumes(params)
 
-        print(parsed_resumes)
-
         seen_resumes_ids: Set[str] = set()
         parsed_unique_resumes = []
 
         for resume_data in parsed_resumes:
             try:
                 resume_id = resume_data['resume_id']
-                print(resume_id)
                 if resume_id not in seen_resumes_ids:
                     existing_resume = crud.get_resume_by_id(db, resume_id)
-                    print(existing_resume)
 
                     if not existing_resume:
-                        print('so', resume_data)
                         crud.create_resume(db, schemas.ResumeCreate(**resume_data))
-                        print('added', resume_id)
 
                     seen_resumes_ids.add(resume_id)
                     parsed_unique_resumes.append(resume_data)
@@ -98,13 +92,10 @@ async def get_resumes(
 
                 filtered_resumes.append(resume)
 
-        print('filtered')
-        print(filtered_resumes)
         filtered_db_resumes_schemas = [schemas.Resume(**v.__dict__) for v in filtered_resumes]
 
         all_resumes = parsed_unique_resumes + filtered_db_resumes_schemas
 
-        print(all_resumes)
         await redis.set(cache_key, json.dumps(
             [resume if isinstance(resume, dict) else resume.dict() for resume in all_resumes]), ex=60)
 
