@@ -27,3 +27,4 @@ class Resume(Base):
     area = Column(Integer)
     age = Column(Integer)
     experience = Column(String)
+    address = Column(String)
