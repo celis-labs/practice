@@ -1,3 +1,6 @@
+import json
+
+import aiofiles
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -169,8 +172,6 @@ async def parse_resumes(params):
     data = soup.find_all('main', {'data-qa': lambda x: x and x.startswith('resume-serp__results-search')})
     parsed_data = []
 
-    print(len(data))
-
     for resume in data[0]:
         try:
             resume_element = resume.find('div', {'data-qa': 'resume-serp__resume'})
@@ -193,7 +194,6 @@ async def parse_resumes(params):
             experience_texts = [span.text for span in experience_element.find_all('span')]
 
             experience = ' '.join(experience_texts)
-            print(experience)
 
             # last_experience_container = resume_element.find('div', {'data-qa': 'resume-serp_resume-item-content'})
             # last_experience_element = last_experience_container.find('div')
@@ -201,12 +201,22 @@ async def parse_resumes(params):
             # last_experience_place = last_experience_element.find('span', {'class': 'bloko-text bloko-text_strong'})
             # last_experience_link = last_experience_element.find('label', {'data-qa': 'last-experience-link'})
 
+            async with aiofiles.open("areas.json", mode="r", encoding="utf-8") as file:
+                areas_content = await file.read()
+            areas = json.loads(areas_content)
+
+            address = None
+            for area in areas:
+                if int(area['id']) == query_params['area']:
+                    address = area['title']
+
             parsed_data.append({
                 'title': title,
                 'resume_id': resume_id,
                 'area': query_params['area'],
                 'age': age,
-                'experience': experience
+                'experience': experience,
+                'address': address
             })
         except:
             pass
