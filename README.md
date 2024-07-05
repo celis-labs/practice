@@ -94,7 +94,8 @@ npm install
 4. Замените данные для бд в .env и alembic.ini
 5. Создайте миграцию:
    ```bash
-   alembic revision --autogenerate -m ""
+   alembic init alembic
+   alembic revision --autogenerate -m "initial migration"
    alembic upgrade head   
    ```
 6. Запустите API:
