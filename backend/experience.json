@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Не имеет значения",
+    "value": ""
+  },
+  {
+    "title": "Нет опыта",
+    "value": "noExperience"
+  },
+  {
+    "title": "От 1 года до 3 лет",
+    "value": "between1And3"
+  },
+  {
+    "title": "От 3 до 6 лет",
+    "value": "between3And6"
+  },
+  {
+    "title": "Более 6 лет",
+    "value": "moreThan6"
+  }
+]
