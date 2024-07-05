@@ -1,5 +1,4 @@
 export const formatSalary = (min_salary: number, max_salary: number, currency: string, payment_category: string) => {
-    console.log(min_salary, max_salary, currency, payment_category)
     if (min_salary && max_salary && min_salary !== max_salary) {
         return `${min_salary} – ${max_salary} ${currency} ${payment_category}`;
     } else if (min_salary) {

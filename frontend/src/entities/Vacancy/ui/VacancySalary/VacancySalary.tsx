@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {Checkbox, Input} from "@nextui-org/react";
+import { Checkbox, Input } from "@nextui-org/react";
 
 import { useDebounce } from "use-debounce";
 
@@ -34,15 +34,18 @@ export const VacancySalary = () => {
             </span>
 
             <Input
-                disabled={loading}
+                disabled={ loading }
                 placeholder="З/п от"
-                onChange={onTyping}
-                value={typed}
+                onChange={ onTyping }
+                value={ typed }
+                type="number"
             />
             <Checkbox
                 isSelected={ only_with_salary }
                 onValueChange={ setOnlyWithSalary }
-            >Указан доход</Checkbox>
+            >
+                Указан доход
+            </Checkbox>
         </div>
     )
 }
