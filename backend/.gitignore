@@ -2,4 +2,4 @@
 .venv
 .env
 alembic.ini
-alembic/versions
+migrations/versions

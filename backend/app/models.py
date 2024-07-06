@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from .database import Base
+from .db.db import Base
 
 
 class Vacancy(Base):

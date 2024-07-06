@@ -11,3 +11,4 @@ redis
 fastapi-cors
 aiofiles
 aiohttp
+asyncpg

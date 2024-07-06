@@ -1,6 +1,14 @@
+import os
+
 import redis.asyncio as aioredis
 
-redis = aioredis.from_url("redis://localhost")
+from dotenv import load_dotenv
+
+load_dotenv()
+
+REDIS_URL = os.getenv("REDIS_URL")
+
+redis = aioredis.from_url(REDIS_URL)
 
 
 async def startup_event():

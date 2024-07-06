@@ -4,7 +4,7 @@ import aiofiles
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Set
-from .database import get_db
+from .db.db import get_async_session
 from . import crud, schemas, parser
 from .redis_client import redis
 from .utils import get_usd_to_rub_rate
@@ -29,7 +29,7 @@ async def get_resumes(
         hhtmFromLabel: str = Query("resume_search_line"),
         skip: int = Query(0),
         limit: int = Query(10),
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_async_session)
 ):
     params = {
         "text": text,
@@ -120,7 +120,7 @@ async def get_vacancies(
         experience: str = Query(""),
         skip: int = Query(0),
         limit: int = Query(10),
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_async_session)
 ):
     params = {
         "ored_clusters": ored_clusters,
