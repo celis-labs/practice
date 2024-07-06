@@ -74,6 +74,22 @@ npm install
 - `experience`: Опыт работы
 
 ## Запуск
+
+### Docker
+Сборка:
+```bash
+docker compose build frontend db redis
+docker compose up -d frontend db redis
+docker compose build backend
+```
+
+Запуск:
+```bash
+docker compose up
+```
+
+### Вручную
+
 1. Создание venv:
    ```bash
    python -m venv .venv
